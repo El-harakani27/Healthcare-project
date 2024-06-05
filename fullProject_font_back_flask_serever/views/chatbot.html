@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        nav {
+            background-color: #4CAF50; /* Green */
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #45a049; /* Darker Green */
+        }
+        .chat-container {
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+            margin-top: 60px;
+        }
+        #chatbox {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: #fff;
+            overflow-y: scroll;
+            height: 300px;
+        }
+        .userText {
+            color: white;
+            font-size: 20px;
+            text-align: right;
+        }
+        .userText span {
+            background-color: #808080;
+            padding: 10px;
+            border-radius: 25px;
+        }
+        .botText {
+            color: white;
+            font-size: 20px;
+            text-align: left;
+        }
+        .botText span {
+            background-color: #4169e1;
+            padding: 10px;
+            border-radius: 25px;
+        }
+        #userInput {
+            margin-top: 20px;
+        }
+        #textInput {
+            width: calc(100% - 20px);
+            border: none;
+            border-bottom: 3px solid black;
+            font-size: 17px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #tidbit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/chatbot">Chatbot</a>
+        <a href="/symp">Symptom Diagnoses</a>
+        <a href="/img">Covid Detection</a>
+    </nav>
+
+    <center>
+        <h1>
+            <img src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png" alt="CANDICE" style="width:40px;height:40px;" />
+            ChatBot
+        </h1>
+    </center>
+
+    <div class="chat-container">
+        <div id="chatbox"></div>
+        <div id="userInput">
+            <input id="textInput" type="text" name="msg" placeholder="Type your message here" />
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        function getBotResponse() {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+            $.get("/get", { msg: rawText }).done(function(data) {
+                var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+                $("#chatbox").append(botHtml);
+                $("#chatbox").scrollTop($("#chatbox")[0].scrollHeight);
+            });
+        }
+
+        $("#textInput").keypress(function(e) {
+            if (e.which == 13) {
+                getBotResponse();
+            }
+        });
+    </script>
+</body>
+</html>

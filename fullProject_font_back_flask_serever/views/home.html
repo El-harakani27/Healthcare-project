@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        nav {
+            background-color: #4CAF50; /* Green */
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #45a049; /* Darker Green */
+        }
+        form {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="radio"],
+        button {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="radio"]:focus,
+        button:focus {
+            outline: none;
+            border-color: #4CAF50; /* Green */
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker Green */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="\chatbot">Chatbot</a>
+        <a href="\symp">Symptom Diagnoses</a>
+        <a href="\img">Covid Detection</a>
+    </nav>
+
+    <form action="\home" method="post">
+        <label for="age">Age:</label>
+        <input type="text" name="age" /><br>
+
+        <label for="sex">Sex:</label>
+        <input type="radio" name="sex" value="Male">Male
+        <input type="radio" name="sex" value="Female">Female<br>
+    
+        <label for="chest_pain_type">Chest Pain type:</label>
+        <input type="number" name="chest_pain_type" step="any" min="1" max="4" /><br>
+
+        <label for="resting_bp_s">Resting bp s:</label>
+        <input type="number" name="resting_bp_s" step="any" /><br>
+
+        <label for="cholesterol">Cholesterol:</label>
+        <input type="number" name="cholesterol" step="any" /><br>
+
+        <label for="fasting_blood_sugar">Fasting Blood Sugar:</label>
+        <input type="number" name="fasting_blood_sugar"  min="0" max="1" /><br>
+
+        <label for="resting_ecg">Resting ECG:</label>
+        <input type="number" name="resting_ecg" min="0" max="2" /><br>
+
+        <label for="max_heart_rate">Max Heart Rate:</label>
+        <input type="number" name="max_heart_rate" step="any"/><br>
+
+        <label for="exercise_angina">Exercise Angina:</label>
+        <input type="number" name="exercise_angina" min="0" max="1" /><br>
+
+        <label for="oldpeak">Oldpeak:</label>
+        <input type="number" name="oldpeak" step="any" /><br>
+
+        <label for="ST_slope">ST slope:</label>
+        <input type="number" name="ST_slope" min="1" max="3" /><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
